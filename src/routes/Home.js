@@ -37,7 +37,17 @@ const Loading = styled.div`
     padding-top: 100px;
 `
 
+const Movies = styled.div`
+    width: 100%;
+    max-width:1200px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 25px;
+    position: relative;
+    top:-50px;
+    margin: 0px auto;
 
+`
 
 const GET_MOVIES = gql`
     {
@@ -60,7 +70,11 @@ function Home() {
                 <p>Get data using GraphQL</p>
             </Header>
             {loading && <Loading>Loading...</Loading>}
-            {!loading && data.movies && data.movies.map(movie => <Movie key={movie.id} id={movie.id} /> )}
+            {!loading && data.movies && 
+                <Movies>
+                    {data.movies.map(movie => <Movie key={movie.id} id={movie.id} bg={movie.medium_cover_image}/> )}
+                </Movies>
+            }
         </Container>
 
     )
