@@ -40,8 +40,9 @@ const Loading = styled.div`
 const Movies = styled.div`
     width: 100%;
     max-width:1200px;
+    padding: 10px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     grid-gap: 25px;
     position: relative;
     top:-50px;
