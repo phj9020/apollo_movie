@@ -80,11 +80,13 @@ const Suggestions = styled.div`
 const GET_MOVIE_DETAIL = gql`
     query getMovie($id: Int!) {
         movie(id: $id){
+            id
             title
             description_intro
             medium_cover_image
             language
             rating
+            isLiked @client
         }
         suggestions(id: $id) {
                 id
@@ -107,7 +109,7 @@ function Detail() {
         <Container>
             <Firstblock>
                 <Column>
-                    <Title>{loading ? "Loading...⌛" : data.movie.title}</Title>
+                    <Title>{loading ? "Loading...⌛" : `${data.movie.title} ${data.movie.isLiked ? "👍" : "😀"}` }</Title>
                     <Subtitle>Language: {data?.movie.language}</Subtitle>
                     <Subtitle>Rate: {data?.movie.rating}</Subtitle>
                     <Description>{data?.movie.description_intro}</Description>

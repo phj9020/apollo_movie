@@ -43,7 +43,7 @@ const Movies = styled.div`
     padding: 10px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    grid-gap: 25px;
+    grid-gap: 35px 25px;
     position: relative;
     top:-50px;
     margin: 0px auto;
@@ -55,6 +55,7 @@ const GET_MOVIES = gql`
         movies {
             id
             medium_cover_image
+            isLiked @client
         }
     }
 `;
@@ -73,7 +74,7 @@ function Home() {
             {loading && <Loading>Loading...</Loading>}
             {!loading && data.movies && 
                 <Movies>
-                    {data.movies.map(movie => <Movie key={movie.id} id={movie.id} bg={movie.medium_cover_image}/> )}
+                    {data.movies.map(movie => <Movie key={movie.id} id={movie.id} isLiked={movie.isLiked} bg={movie.medium_cover_image}/> )}
                 </Movies>
             }
         </Container>
